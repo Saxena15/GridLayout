@@ -11,19 +11,19 @@ import SwiftUI
 
 struct GridItemView: View {
     
-    var data: Coverage
-    let viewModel = HomeViewModel()
+    var data: ImageObj
+    var viewModel : HomeViewModel
     @Environment(\.openURL) var openURL
     
-    init(data: Coverage) {
+    init(data: ImageObj, viewModel : HomeViewModel) {
         self.data = data
+        self.viewModel = viewModel
     }
     
     var body: some View {
         VStack{
             VStack{
-                
-                AsyncImage(url: URL(string: viewModel.fetchImageURL(data.thumbnail))) { img in
+                AsyncImage(url: URL(string: data.imageURL)) { img in
                     img.resizable()
                 } placeholder: {
                     Image(systemName: "photo.fill")
@@ -31,15 +31,13 @@ struct GridItemView: View {
                     .border(Color.gray)
                     .clipShape(RoundedRectangle(cornerRadius: 15))
                 
-                
-                
                 Button(action: {
+                    guard let url = URL(string: data.sourceURL) else { return }
                     
-                    guard let url = URL(string: data.coverageURL) else { return }
                     openURL(url)
                     
                 }, label: {
-                    Text(data.publishedBy)
+                    Text(data.uploadedBy)
                         .foregroundColor(.black)
                         .lineLimit(2)
                 })
@@ -48,9 +46,8 @@ struct GridItemView: View {
                 RoundedRectangle(cornerRadius: 12)
                     .fill(.gray)
             ).frame(width: 100, height: CGFloat.random(in: 100...150), alignment: .center)
-            .padding(.vertical, 10)
+                .padding(.vertical, 10)
         }
-       
         
     }
 }

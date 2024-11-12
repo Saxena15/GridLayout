@@ -11,6 +11,9 @@
 		651055D12CE306C40049AA49 /* RealmDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651055D02CE306C40049AA49 /* RealmDB.swift */; };
 		651055D92CE3A6EE0049AA49 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 651055CE2CE306840049AA49 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		651055DB2CE3A7200049AA49 /* RealmTransactionsRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651055DA2CE3A7200049AA49 /* RealmTransactionsRepresentable.swift */; };
+		651055DF2CE3C7EC0049AA49 /* HomeViewModelRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651055DE2CE3C7EC0049AA49 /* HomeViewModelRepresentable.swift */; };
+		651055E12CE3C8410049AA49 /* ImageColomn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651055E02CE3C8410049AA49 /* ImageColomn.swift */; };
+		651055E32CE3C8620049AA49 /* ImageObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651055E22CE3C8620049AA49 /* ImageObj.swift */; };
 		654661C22CE1D3B30023D0D9 /* GridLayoutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654661C12CE1D3B30023D0D9 /* GridLayoutApp.swift */; };
 		654661C62CE1D3B50023D0D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 654661C52CE1D3B50023D0D9 /* Assets.xcassets */; };
 		654661C92CE1D3B50023D0D9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 654661C82CE1D3B50023D0D9 /* Preview Assets.xcassets */; };
@@ -46,6 +49,9 @@
 /* Begin PBXFileReference section */
 		651055D02CE306C40049AA49 /* RealmDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDB.swift; sourceTree = "<group>"; };
 		651055DA2CE3A7200049AA49 /* RealmTransactionsRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTransactionsRepresentable.swift; sourceTree = "<group>"; };
+		651055DE2CE3C7EC0049AA49 /* HomeViewModelRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelRepresentable.swift; sourceTree = "<group>"; };
+		651055E02CE3C8410049AA49 /* ImageColomn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageColomn.swift; sourceTree = "<group>"; };
+		651055E22CE3C8620049AA49 /* ImageObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageObj.swift; sourceTree = "<group>"; };
 		654661BE2CE1D3B30023D0D9 /* GridLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GridLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		654661C12CE1D3B30023D0D9 /* GridLayoutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridLayoutApp.swift; sourceTree = "<group>"; };
 		654661C52CE1D3B50023D0D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -218,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				654661EF2CE1F9090023D0D9 /* Coverage.swift */,
+				651055E22CE3C8620049AA49 /* ImageObj.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -228,6 +235,7 @@
 				654661D52CE1E6920023D0D9 /* GridItemView.swift */,
 				654661D32CE1E67F0023D0D9 /* GridViewLayout.swift */,
 				654661CF2CE1D9D50023D0D9 /* HomeView.swift */,
+				651055E02CE3C8410049AA49 /* ImageColomn.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -236,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				654661F22CE1F9A40023D0D9 /* HomeViewModel.swift */,
+				651055DE2CE3C7EC0049AA49 /* HomeViewModelRepresentable.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -326,9 +335,12 @@
 				654661DB2CE1F0D00023D0D9 /* RequestParameter.swift in Sources */,
 				654661DD2CE1F0E40023D0D9 /* RequestHeader.swift in Sources */,
 				654661D22CE1DE8E0023D0D9 /* DataRequestManager.swift in Sources */,
+				651055E12CE3C8410049AA49 /* ImageColomn.swift in Sources */,
 				654661C22CE1D3B30023D0D9 /* GridLayoutApp.swift in Sources */,
 				654661F32CE1F9A40023D0D9 /* HomeViewModel.swift in Sources */,
+				651055E32CE3C8620049AA49 /* ImageObj.swift in Sources */,
 				651055D12CE306C40049AA49 /* RealmDB.swift in Sources */,
+				651055DF2CE3C7EC0049AA49 /* HomeViewModelRepresentable.swift in Sources */,
 				654661E72CE1F20D0023D0D9 /* AppSettingProvider.swift in Sources */,
 				654661F02CE1F9090023D0D9 /* Coverage.swift in Sources */,
 				654661DF2CE1F0F80023D0D9 /* RequestMethod.swift in Sources */,

@@ -10,14 +10,12 @@ import SwiftUI
 
 
 struct HomeView: View{
-    var viewModel = HomeViewModel.shared
-
+    var db = RealmDB()
     var body: some View{
         VStack{
-            GridViewLayout()
-            
+            GridViewLayout(realm: db, viewModel: HomeViewModel(realm: db))
         }
-      
+        
     }
 }
 

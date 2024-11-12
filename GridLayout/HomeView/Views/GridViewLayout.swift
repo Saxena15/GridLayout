@@ -7,18 +7,21 @@
 
 import Foundation
 import SwiftUI
+import RealmSwift
 
 struct GridViewLayout: View {
-//    var viewModel = HomeViewModel.shared
-   @ObservedObject var viewModel = HomeViewModel()
-    private var homeGridItems: [GridItem] = [
-        .init(.flexible())
-    ]
     
-    @State var list1 : [Coverage] = []
-    @State var list2 : [Coverage] = []
-    @State var list3 : [Coverage] = []
+    var viewModel : HomeViewModel
+    var realm : RealmDB
+    
+    @State var displayArr : [ImageObj] = []
+    private var homeGridItems: [GridItem] = [ .init(.flexible()) ]
     @State var limit : Int = 100
+    
+    init(realm : RealmDB, viewModel : HomeViewModel){
+        self.realm = realm
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         
@@ -26,34 +29,29 @@ struct GridViewLayout: View {
             HStack(alignment: .top) {
                 
                 LazyVGrid(columns: homeGridItems) {
-                    ImageColomn(data: $list1)
+                    ImageColomn(data: $displayArr, viewModel: viewModel)
                 }
                 LazyVGrid(columns: homeGridItems) {
-                    ImageColomn(data: $list2)
+                    ImageColomn(data: $displayArr, viewModel: viewModel)
                 }
                 LazyVGrid(columns: homeGridItems) {
-                    ImageColomn(data: $list3)
+                    ImageColomn(data: $displayArr, viewModel: viewModel)
                 }
             }
         }.onAppear {
             
-            viewModel.fetchData(.fetchImages(limit: "\(limit)")) { data in
-                let partSize = (data.count + 2) / 3
-                self.list1 = Array(data[0..<partSize])
-                self.list2 = Array(data[partSize..<2*partSize])
-                self.list3 = Array(data[2*partSize..<data.count])
+            let cachedData = realm.fetchAllDataRealm()
+            if cachedData.isEmpty { // if cache is present then api call not needed
+                viewModel.fetchData(.fetchImages(limit: "\(limit)")) {
+                    sortColomns(data: realm.fetchAllDataRealm())
+                }
+            }else{
+                sortColomns(data: realm.fetchAllDataRealm())
             }
         }
     }
-}
- 
-
-struct ImageColomn: View{
-    @Binding var data : [Coverage]
-    var body: some View{
-      
-        ForEach(data , id: \.id) { data in
-            GridItemView(data: data)
-        }
+    
+    func sortColomns(data: Results<ImageTask>){
+        self.displayArr = data[0..<data.count].map{ImageObj(id: "\($0.id)", imageURL: $0.imageURL, uploadedBy: $0.uploadedBy, sourceURL: $0.sourceURL)}
     }
 }

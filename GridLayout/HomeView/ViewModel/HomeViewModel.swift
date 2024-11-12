@@ -9,28 +9,31 @@ import Foundation
 import RealmSwift
 
 
-class HomeViewModel : ObservableObject {
-    @Published var data : [Coverage] = []
-    var dataRequestManager : DataRequestManager
-    static let shared = HomeViewModel()
+class HomeViewModel : ObservableObject, HomeViewModelRepresentable{
     
-    init() {
+    var dataRequestManager : DataRequestManager
+    var realm : RealmDB
+    
+    init(realm : RealmDB) {
+        self.realm = realm
         self.dataRequestManager = DataRequestManager()
     }
     
-    func fetchData(_ eventType: APIRouter, completion: (([Coverage])->Void)?){
+    func fetchData(_ eventType: APIRouter, completion: (()->Void)?){
         
         self.dataRequestManager.data(eventType){ coverages in
           
-            completion?(coverages)
-            
             let _ = coverages.forEach { coverage in
                 
                 let imageTask = ImageTask()
                 imageTask.imageURL = coverage.coverageURL
                 imageTask.uploadedBy =  coverage.publishedBy
                 imageTask.imageURL = self.fetchImageURL(coverage.thumbnail)
+                DispatchQueue.main.async {
+                    self.realm.saveDataRealm(imageTask)
+                }
                 
+                completion?()
             }
         }
         
